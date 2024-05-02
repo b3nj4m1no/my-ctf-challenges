@@ -22,42 +22,21 @@ You should make a JSON that satisfies the following conditions:
 The `backend` server, i.e. a JSON parser of Express, recognizes it as a JSON containing a key `dammilaflag`.
 The `proxy` server fails to parse it as a JSON value at `JSON.parse(req.body)`.
 In conclusion, the following JSON satisfies them where `\ufeff` is a BOM:
-
-
-Come affermato nella descrizione, il primo obiettivo era superare le REGEX.
-
-
-La prima REGEX controlla se la password contiene caratteri non compresi nella funzione `preg_match`, per esempio lo spazio ( ).
-```php
-if (!preg_match("/^[a-zA-Z0-9_\-'(),]+$/", $inp, $matches))
+```
+\ufeff{"dammilaflag": true}
 ```
 
-La seconda REGEX:
-- Controlla se la stringa contiene almeno un numero.
-- Controlla se la stringa contiene almeno una lettera.
-- Controlla se la stringa contiene almeno uno degli underscore ( _ ) o dei trattini ( - ).
-```php
-if (!(preg_match("/[0-9]/", $inp, $matches) && preg_match("/[a-zA-Z]/", $inp, $matches) && preg_match("/[_-]/", $inp, $matches)))
-```
+Web frameworks often allow JSON values to be added a BOM at the beginning. For example, Fastify and Express check a BOM at:
+Fastify: https://github.com/fastify/secure-json-parse/blob/v2.7.0/index.js#L20-L23
+Express: https://github.com/ashtuchkin/iconv-lite/blob/v0.6.3/lib/bom-handling.js#L39-L40
 
-La terza REGEX controlla se la password contiene il numero "1".
-```php
-if (preg_match("/[1]/", $inp, $matches))
+On the other hand, JSON.parse does not allow a BOM:
 ```
-
-
-Arrivati a questo punto dobbiamo porci un altro obiettivo, quello di superare l'ultimo controllo.
-```php
-if ($inp != "192014812")
+> JSON.parse('{"givemeflag": true}')
+{ givemeflag: true }
+> JSON.parse('\ufeff{"givemeflag": true}')
+Uncaught SyntaxError: Unexpected token '', "{"givemef"... is not valid JSON
 ```
-
-Ovviamente visto che la stringa contiene il numero "1", la password "192014812" non è valida.
-Osservando il codice però, possiamo osservare che prima di `strcmp` viene eseguita la funzione [`eval`](https://www.php.net/manual/en/function.eval.php).
-```php
-eval("\$input=$inp;");
-```
-Grazie al funzionamento interno della funzione `eval`, possiamo usarla a nostro favore, passando come parametro "192014812" codificato, per esempio in esadecimale.
-Ricordiamoci che non possiamo passare direttamente il numero codificato, ma possiamo per esempio passare `192014822 - 10`.
 
 ```py
 # Author: @benjamin
