@@ -23,7 +23,7 @@ You should make a JSON that satisfies the following conditions:
 * The `proxy` server fails to parse it as a JSON value at `JSON.parse(req.body)`.
   
 In conclusion, the following JSON satisfies them where `\ufeff` is a BOM:
-```
+```js
 \ufeff{"dammilaflag": true}
 ```
 
@@ -33,7 +33,7 @@ Web frameworks often allow JSON values to be added a BOM at the beginning. For e
 * Express: https://github.com/ashtuchkin/iconv-lite/blob/v0.6.3/lib/bom-handling.js#L39-L40
 
 On the other hand, JSON.parse does not allow a BOM:
-```
+```js
 > JSON.parse('{"givemeflag": true}')
 { givemeflag: true }
 > JSON.parse('\ufeff{"givemeflag": true}')
