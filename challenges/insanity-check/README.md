@@ -1,5 +1,12 @@
 # Insanity Check
 
+## Setup
+```
+cd build
+docker compose up
+Ora il sito è disponibile al link: [http://localhost:4567]([http://www.beginner.havce.it:8080)](http://localhost:4567)
+```
+
 ## Descrizione
 @benjamin ha scoperto i firewall???
 
