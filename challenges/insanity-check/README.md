@@ -19,16 +19,18 @@ Corri a fare first blood: [http://www.beginner.havce.it:8080](http://www.beginne
 ## Soluzione
 You should make a JSON that satisfies the following conditions:
 
-The `backend` server, i.e. a JSON parser of Express, recognizes it as a JSON containing a key `dammilaflag`.
-The `proxy` server fails to parse it as a JSON value at `JSON.parse(req.body)`.
+* The `backend` server, i.e. a JSON parser of Express, recognizes it as a JSON containing a key `dammilaflag`.
+* The `proxy` server fails to parse it as a JSON value at `JSON.parse(req.body)`.
+  
 In conclusion, the following JSON satisfies them where `\ufeff` is a BOM:
 ```
 \ufeff{"dammilaflag": true}
 ```
 
 Web frameworks often allow JSON values to be added a BOM at the beginning. For example, Fastify and Express check a BOM at:
-Fastify: https://github.com/fastify/secure-json-parse/blob/v2.7.0/index.js#L20-L23
-Express: https://github.com/ashtuchkin/iconv-lite/blob/v0.6.3/lib/bom-handling.js#L39-L40
+
+* Fastify: https://github.com/fastify/secure-json-parse/blob/v2.7.0/index.js#L20-L23
+* Express: https://github.com/ashtuchkin/iconv-lite/blob/v0.6.3/lib/bom-handling.js#L39-L40
 
 On the other hand, JSON.parse does not allow a BOM:
 ```
