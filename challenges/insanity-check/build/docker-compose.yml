@@ -1,0 +1,11 @@
+services:
+  proxy:
+    build: ./proxy
+    restart: unless-stopped
+    ports:
+      - 4567:3000
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    environment:
+      - FLAG=CodeVinciCTF{n3vEr_tRu5t_4_w4f_:drop_of_blood:}
