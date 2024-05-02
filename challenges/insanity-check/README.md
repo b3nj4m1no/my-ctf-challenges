@@ -17,22 +17,22 @@ Corri a fare first blood: [<url>](<url>).
 
 
 ## Soluzione
-You should make a JSON that satisfies the following conditions:
+Lo scopo era creare un payload in json:
 
-* The `backend` server, i.e. a JSON parser of Express, recognizes it as a JSON containing a key `dammilaflag`.
-* The `proxy` server fails to parse it as a JSON value at `JSON.parse(req.body)`.
+* Il `backend`, ovvero un parser JSON di Express, lo doveva riconoscere come un JSON contenente una chiave `dammilaflag`.
+* Il `proxy` non doveva riuscire ad analizzarlo come un valore JSON a `JSON.parse(req.body)`.
   
-In conclusion, the following JSON satisfies them where `\ufeff` is a BOM:
+In conclusione, il seguente JSON li soddisfa, dove `\ufeff` è un [BOM (Byte Order Mark)](https://en.wikipedia.org/wiki/Byte_order_mark):
 ```js
 \ufeff{"dammilaflag": true}
 ```
 
-Web frameworks often allow JSON values to be added a BOM at the beginning. For example, Fastify and Express check a BOM at:
+I framework web spesso consentono l'aggiunta di un BOM all'inizio dei valori JSON. Ad esempio, Fastify ed Express controllano un BOM a:
 
 * Fastify: https://github.com/fastify/secure-json-parse/blob/v2.7.0/index.js#L20-L23
 * Express: https://github.com/ashtuchkin/iconv-lite/blob/v0.6.3/lib/bom-handling.js#L39-L40
 
-On the other hand, JSON.parse does not allow a BOM:
+D'altra parte, `JSON.parse` non consente un BOM:
 ```js
 > JSON.parse('{"dammilaflag": true}')
 { dammilaflag: true }
