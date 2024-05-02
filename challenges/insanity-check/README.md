@@ -10,6 +10,13 @@ Corri a fare first blood: [http://www.beginner.havce.it:8080](http://www.beginne
 
 
 ## Soluzione
+You should make a JSON that satisfies the following conditions:
+
+The `backend` server, i.e. a JSON parser of Express, recognizes it as a JSON containing a key `dammilaflag`.
+The `proxy` server fails to parse it as a JSON value at `JSON.parse(req.body)`.
+In conclusion, the following JSON satisfies them where `\ufeff` is a BOM:
+
+
 Come affermato nella descrizione, il primo obiettivo era superare le REGEX.
 
 
