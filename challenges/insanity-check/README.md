@@ -49,7 +49,7 @@ import requests
 
 url = "http://localhost:4567"
 
-payload = '\ufeff{"dammilaflag": true}'.encode('utf-8') 
+payload = '\ufeff{"dammilaflag": true}'.encode('utf-8')  # UTF-8 BOM
 
 r = requests.post(
     url,
