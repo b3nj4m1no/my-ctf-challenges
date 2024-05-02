@@ -10,7 +10,7 @@ Ora il sito è disponibile al link: [http://localhost:4567](http://localhost:456
 ## Descrizione
 @benjamin ha scoperto i firewall???
 
-Corri a fare first blood: [http://www.beginner.havce.it:8080](http://www.beginner.havce.it:8080).
+Corri a fare first blood: [<url>](<url>).
 
 
 *Author: [@benjamin](https://github.com/b3nj4m1no)*
