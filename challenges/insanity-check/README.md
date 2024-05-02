@@ -17,7 +17,7 @@ Corri a fare first blood: [<url>](<url>).
 
 
 ## Soluzione
-Lo scopo era creare un payload in json:
+Lo scopo era creare un payload in json che rispecchiasse due condizioni:
 
 * Il `backend`, ovvero un parser JSON di Express, lo doveva riconoscere come un JSON contenente una chiave `dammilaflag`.
 * Il `proxy` non doveva riuscire ad analizzarlo come un valore JSON a `JSON.parse(req.body)`.
