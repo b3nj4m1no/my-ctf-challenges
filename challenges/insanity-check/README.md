@@ -27,7 +27,9 @@ In conclusione, il seguente JSON li soddisfa, dove `\ufeff` è un [BOM (Byte Ord
 \ufeff{"dammilaflag": true}
 ```
 
-I framework web spesso consentono l'aggiunta di un BOM all'inizio dei valori JSON. Ad esempio, Fastify ed Express controllano un BOM a:
+I framework web spesso consentono l'aggiunta di un BOM all'inizio dei valori JSON. 
+
+Ad esempio, Fastify ed Express controllano un BOM a:
 
 * Fastify: https://github.com/fastify/secure-json-parse/blob/v2.7.0/index.js#L20-L23
 * Express: https://github.com/ashtuchkin/iconv-lite/blob/v0.6.3/lib/bom-handling.js#L39-L40
