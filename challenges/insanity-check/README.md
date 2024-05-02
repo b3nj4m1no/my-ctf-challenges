@@ -35,7 +35,7 @@ Web frameworks often allow JSON values to be added a BOM at the beginning. For e
 On the other hand, JSON.parse does not allow a BOM:
 ```js
 > JSON.parse('{"dammilaflag": true}')
-{ givemeflag: true }
+{ dammilaflag: true }
 > JSON.parse('\ufeff{"dammilaflag": true}')
 Uncaught SyntaxError: Unexpected token '', "{"dammil"... is not valid JSON
 ```
