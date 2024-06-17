@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  atd:
+    build: .
+    container_name: "atd"
+    ports:
+      - "0.0.0.0:7777:5000"
+    restart: unless-stopped
+    volumes:
+      - ./src/instance:/app/instance
+    environment:
+      - FLAG=flag{boh_devo_cambiarla}
+      - FAKE=flag{qu3s7e_ch4ll3nge_s7up1d3_n0n_Le_5oPp0r7o}
